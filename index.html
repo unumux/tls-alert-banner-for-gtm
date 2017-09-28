@@ -112,7 +112,7 @@ if (!sessionStorage.getItem("didOldBrowserWarningAlreadyAppear")) {
         return {name:M[0],version:M[1]};
     })();
 
-    console.log(navigator.browserSpecs); //Object { name: "Firefox", version: "42" }
+    //console.log(navigator.browserSpecs); //Object { name: "Firefox", version: "42" }
 
     var isOldBrowser = false;
 
@@ -138,10 +138,7 @@ if (!sessionStorage.getItem("didOldBrowserWarningAlreadyAppear")) {
     }
 
     
-
-
     if (isOldBrowser){
-        //alert('Old browser detected!')
         sessionStorage.setItem('didOldBrowserWarningAlreadyAppear', true);
         document.getElementById("tls-alert-banner").style.display = 'block';
     }
@@ -150,8 +147,7 @@ if (!sessionStorage.getItem("didOldBrowserWarningAlreadyAppear")) {
 }
 
 function testTLSAlert(){
-    console.log("test button clicked");
-	document.getElementById("tls-alert-banner").style.display = 'block';
+    document.getElementById("tls-alert-banner").style.display = 'block';
 }
   
 function closeTLSAlertBanner(){
