@@ -1,0 +1,161 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+<div id="tls-alert-banner" class="tls-alert-banner">
+    
+    <p>
+        <span class="tls-alert-title">Security Warning: </span> 
+        <span class="tls-alert-subhead">Your current web browser needs to be updated in order to support newer encryption protocols.</span>
+    </p>
+    
+    <p>
+        This can normally be resolved by updating your preferred web browser using the icon links below.
+    </p>
+    
+    <p class="tls-alert-iconrow">
+        <a href="https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads" target="_blank">
+            <img src="http://www.unumemarketing.com/TLSalert//internet-explorer_9-11_64x64.png" class="logoicon"></a>
+        
+        <a href="https://www.microsoft.com/en-us/windows/microsoft-edge" target="_blank">
+            <img src="http://www.unumemarketing.com/TLSalert//edge_64x64.png" class="logoicon"></i></a>
+        
+        <a href="https://www.google.com/chrome/" target="_blank">
+            <img src="http://www.unumemarketing.com/TLSalert//chrome_12-48_64x64.png" class="logoicon" alt="Google Chrome"></a>
+        
+        <a href="https://www.mozilla.org/en-US/firefox/" target="_blank">
+            <img src="http://www.unumemarketing.com/TLSalert//firefox_3.5-22_64x64.png" class="logoicon"></a> 
+    </p>
+        
+    <p>
+        Some corporate users may need to contact their IT department if this notification persists.
+    </p>
+    
+    <input type="button" class="tls-alert-banner-close-button" value="X" onclick="closeTLSAlertBanner()">
+</div>
+
+
+
+
+<style>
+.tls-alert-banner {
+  background-color: #914443;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+
+.tls-alert-title {
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  color: #f0c359;
+}
+
+
+.tls-alert-subhead {
+  padding-bottom: 3px;
+  border-bottom: 1px dotted white;
+}
+
+.tls-alert-iconrow a {
+  margin-right: 2rem;
+}
+
+.tls-alert-iconrow a:last-child {
+  margin-right: 0;
+}
+
+.logoicon{
+    width: 57px;
+    height: 57px;
+}
+
+.tls-alert-banner-close-button {
+  background-color: #f0c359;
+  background-image: url('https://www.coloniallife.com/Images/Colonial/ColonialLife/close.png') no-repeat 50%;
+  padding: 5px 10px;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+</style>
+
+
+
+
+
+<script>
+// based off https://stackoverflow.com/a/38080051/1735394
+
+if (!sessionStorage.getItem("didOldBrowserWarningAlreadyAppear")) {
+
+    navigator.browserSpecs = (function(){
+        var ua= navigator.userAgent, tem, 
+        M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+        if(/trident/i.test(M[1])){
+            tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+            return {name:'IE',version:(tem[1] || '')};
+        }
+        if(M[1]=== 'Chrome'){
+            tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+            if(tem!= null) return {name:tem[1].replace('OPR', 'Opera'),version:tem[2]};
+        }
+        M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+        if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+        return {name:M[0],version:M[1]};
+    })();
+
+    console.log(navigator.browserSpecs); //Object { name: "Firefox", version: "42" }
+
+    var isOldBrowser = false;
+
+    if (navigator.browserSpecs.name == 'MSIE') {
+        if (navigator.browserSpecs.version <= 10) {
+            isOldBrowser = true;
+        }
+    }
+    if (navigator.browserSpecs.name == 'Firefox') {
+        if (navigator.browserSpecs.version < 27) {
+            isOldBrowser = true;
+        }
+    }
+    if (navigator.browserSpecs.name == 'Chrome') {
+        if (navigator.browserSpecs.version < 22) {
+            isOldBrowser = true;
+        }
+    }
+    if (navigator.browserSpecs.name == 'Safari') {
+        if (navigator.browserSpecs.version < 7) {
+            isOldBrowser = true;
+        }
+    }
+
+    
+
+
+    if (isOldBrowser){
+        //alert('Old browser detected!')
+        sessionStorage.setItem('didOldBrowserWarningAlreadyAppear', true);
+        document.getElementById("tls-alert-banner").style.display = 'block';
+    }
+    
+    
+}
+
+function test(){
+    console.log("test button clicked");
+	document.getElementById("tls-alert-banner").style.display = 'block';
+}
+  
+function closeTLSAlertBanner(){
+    document.getElementById("tls-alert-banner").style.display = 'none';
+}
+</script>
