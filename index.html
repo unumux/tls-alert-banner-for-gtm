@@ -179,7 +179,6 @@ if (!sessionStorage.getItem("didOldBrowserWarningAlreadyAppear")) {
     
 
     if (isOldBrowser){
-        sessionStorage.setItem('didOldBrowserWarningAlreadyAppear', true);
         document.getElementById("tls-alert-banner").style.display = 'block';
     }
     
@@ -187,10 +186,11 @@ if (!sessionStorage.getItem("didOldBrowserWarningAlreadyAppear")) {
 }
 
 function testTLSAlert(){
-	document.getElementById("tls-alert-banner").style.display = 'block';
+    document.getElementById("tls-alert-banner").style.display = 'block';
 }
   
 function closeTLSAlertBanner(){
+    sessionStorage.setItem('didOldBrowserWarningAlreadyAppear', true);
     document.getElementById("tls-alert-banner").style.display = 'none';
 }
 </script>
