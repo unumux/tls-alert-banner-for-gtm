@@ -5,30 +5,34 @@
     
     <p>
         <span class="tls-alert-title">Security Warning: </span> 
-        <span class="tls-alert-subhead">Your current web browser needs to be updated in order to support newer encryption protocols.</span>
+        <span class="tls-alert-subhead">You may be using an older browser</span>
     </p>
     
-    <p>
-        This can normally be resolved by updating your preferred web browser using the icon links below.
+  	<p>
+        Because we care about your security, we require you to update to the newest version of your preferred browser by March 1, 2018.
     </p>
     
-    <p class="tls-alert-iconrow">
-        <a href="https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads" target="_blank">
-            <img src="http://www.unumemarketing.com/TLSalert//internet-explorer_9-11_64x64.png" class="logoicon"></a>
+	<div class="tls-logo-link-container">
+        <div class="tls-logo-link-box tls-logo-link-box--1">
+            <a class="logolink" href="https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads" target="_blank">
+            <img src="https://www.unumemarketing.com/TLSalert//internet-explorer_9-11_64x64.png" class="logoicon" alt="">Internet Explorer</a>
+        </div>
         
-        <a href="https://www.microsoft.com/en-us/windows/microsoft-edge" target="_blank">
-            <img src="http://www.unumemarketing.com/TLSalert//edge_64x64.png" class="logoicon"></i></a>
+        <div class="tls-logo-link-box tls-logo-link-box--2">
+            <a class="logolink" href="https://www.microsoft.com/en-us/windows/microsoft-edge" target="_blank">
+            <img src="https://www.unumemarketing.com/TLSalert//edge_64x64.png" class="logoicon" alt="">Edge</a>
+        </div>
         
-        <a href="https://www.google.com/chrome/" target="_blank">
-            <img src="http://www.unumemarketing.com/TLSalert//chrome_12-48_64x64.png" class="logoicon" alt="Google Chrome"></a>
+        <div class="tls-logo-link-box tls-logo-link-box--3">
+            <a class="logolink" href="https://www.google.com/chrome/" target="_blank">
+            <img src="https://www.unumemarketing.com/TLSalert//chrome_12-48_64x64.png" class="logoicon" alt="">Chrome</a>
+        </div>
         
-        <a href="https://www.mozilla.org/en-US/firefox/" target="_blank">
-            <img src="http://www.unumemarketing.com/TLSalert//firefox_3.5-22_64x64.png" class="logoicon"></a> 
-    </p>
-        
-    <p>
-        Some corporate users may need to contact their IT department if this notification persists.
-    </p>
+        <div class="tls-logo-link-box tls-logo-link-box--4">
+            <a class="logolink" href="https://www.mozilla.org/en-US/firefox/" target="_blank">
+            <img src="https://www.unumemarketing.com/TLSalert//firefox_3.5-22_64x64.png" class="logoicon" alt="">Firefox</a>
+        </div>
+    </div>
     
     <input type="button" class="tls-alert-banner-close-button" value="X" onclick="closeTLSAlertBanner()">
 </div>
@@ -48,6 +52,7 @@
   width: 100%;
   text-align: center;
   display: none;
+  z-index: 10;
 }
 
 .tls-alert-title {
@@ -69,10 +74,44 @@
 .tls-alert-iconrow a:last-child {
   margin-right: 0;
 }
+  
+.tls-logo-link-container{
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+	margin-bottom: 20px;
+}
+.tls-logo-link-box{
+    float: left;
+    width: 100px;
+}
+  
+.logolink{
+    color: white;
+    font-size: 11px;
+    display: inline-block;
+    margin-top: -20px;
+}
+.logolink:visited{
+    color: white;
+    font-size: 11px;
+}
+.logolink:hover{
+    color: white;
+    font-size: 11px;
+    text-decoration: dashed underline;
+}
+.logolink:active{
+    color: gray;
+    font-size: 11px;
+    text-decoration: dotted underline;
+}
 
 .logoicon{
     width: 57px;
     height: 57px;
+    display:block;
+    margin: 0 auto;
 }
 
 .tls-alert-banner-close-button {
@@ -138,6 +177,7 @@ if (!sessionStorage.getItem("didOldBrowserWarningAlreadyAppear")) {
     }
 
     
+
     if (isOldBrowser){
         sessionStorage.setItem('didOldBrowserWarningAlreadyAppear', true);
         document.getElementById("tls-alert-banner").style.display = 'block';
@@ -147,7 +187,7 @@ if (!sessionStorage.getItem("didOldBrowserWarningAlreadyAppear")) {
 }
 
 function testTLSAlert(){
-    document.getElementById("tls-alert-banner").style.display = 'block';
+	document.getElementById("tls-alert-banner").style.display = 'block';
 }
   
 function closeTLSAlertBanner(){
